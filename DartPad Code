@@ -1,0 +1,36 @@
+class Device {
+  String brand;
+
+  Device(this.brand);
+
+  void turnOn() {
+    print("\n $brand device is turning on.");
+  }
+}
+
+class Smartphone extends Device {
+  String model;
+
+  Smartphone(String brand, this.model) : super(brand);
+
+  Future<String> fetchCloudBackup() async {
+    await Future.delayed(Duration(seconds: 2));
+    
+    return "Backup downloaded successfully for $brand $model.";
+  }
+}
+
+void main() async {
+  Smartphone myPhone = Smartphone("Tecno", "Spark 20C");
+
+  print("--- Starting Program ---");
+  myPhone.turnOn();
+
+  print("\n Initiating Google Cloud Backup Sync...");
+  print("\n Checking application responsiveness: UI is still active and scrolling!");
+
+  String result = await myPhone.fetchCloudBackup();
+
+  print("\n Status Update: $result");
+  print("\n --- Program Finished ---");
+}
